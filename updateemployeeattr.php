@@ -10,11 +10,11 @@
 	<hr>
 	<?php
 		
-		//some variables
-		$servername = "localhost";  //mysql is on the same host as apache (not realistic but whatevs)
-		$username = "admin";        //username for database
-		$password = "123";		    //password for the user
-		$dbname = "employees";  	//which db you're going to use
+		//variables
+		$servername = "192.168.1.110";  //IP of the database server
+		$username = "admin";    	//username for database
+		$password = "123";		//password for the user
+		$dbname = "employees";  	//the database that will be used
 	
 		//this is the php object oriented style of creating a mysql connection
 		$conn = new mysqli($servername, $username, $password, $dbname);  
