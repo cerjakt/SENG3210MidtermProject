@@ -44,11 +44,10 @@
 	
 		echo "<br><br>";
 		
-		//create the SQL select statement, notice the funky string concat at the end to variablize the query
-		//based on using the GET attribute
+		//SQL select statement
 		$sql = "SELECT first_name,last_name FROM employees where last_name = '".$lastname."'";
 	
-		//put the resultset into a variable, again object oriented way of doing things here
+		//putting the result into a variable
 		$result = $conn->query($sql);
 	
 		//if there were no records found say so, otherwise create a while loop that loops through all rows
@@ -57,18 +56,25 @@
 		// the dot "." is PHP's string concatenator operator
 		// here HTML Table tags are used to create a table and table rows.
 		echo "<strong>Employee First and Last Names</strong><br><br>";
-	    echo "<table style=\"width:25%\">";
-	    echo "<tr><td><strong>First Name</strong></td><td><strong>Last Name</strong></td></tr>";
-		if ($result->num_rows > 0){
+	    	echo "<table style=\"width:25%\">";
+	    	echo "<tr><td><strong>First Name</strong></td><td><strong>Last Name</strong></td></tr>";
+	
+		if ($result->num_rows > 0)
+		{
 			//print rows
-			while($row = $result->fetch_assoc()){
+			while($row = $result->fetch_assoc())
+			{
 				echo "<tr><td>" . $row["first_name"]. "</td><td>" . $row["last_name"]. "</td></tr>";
 			}
-		} else {
+		} 
+		else 
+		{
 			echo "No Records Found";
 		}
+	
 		echo "</table>";
-		//always close the DB connections, don't leave 'em hanging
+	
+		//closing DB connection
 		$conn->close();
 		
 	?>
