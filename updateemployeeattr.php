@@ -29,26 +29,34 @@
 
 		//pull the attribute that was passed with the html form GET request and put into a local variable.
 		$fname = $_GET["fname"];    // "John"
-		$lname = $_GET["lname"];    // "Doe"
-		$bdate = $_GET["bdate"];    // "1969-05-30"
-		$hdate = $_GET["hdate"];    // "1999-05-30"
-		$emp_no = $_GET["enumber"]; // 499999
+        	$lname = $_GET["lname"];    // "Doe"
+        	$bdate = $_GET["bdate"];    // "1969-05-30"
+        	$hdate = $_GET["hdate"];    // "1999-05-30"
+        	$emp_no = $_GET["enumber"]; // 499999
 
-		echo "Updating " .$first_name. " to " .$fname;
-		echo "<br>";
-		echo "Updating " .$last_name. " to " .$lname;
-		echo "<br>";
-		echo "Updating " .$hire_date. " to " .$hdate;
-		echo "<br>";
-		echo "Updating " .$birth_date. " to " .$bdate;
+        	echo "Updating " .$first_name. " to " .$fname;
+        	echo "<br>";
+        	echo "Updating " .$last_name. " to " .$lname;
+        	echo "<br>";
+        	echo "Updating " .$hire_date. " to " .$hdate;
+        	echo "<br>";
+        	echo "Updating " .$birth_date. " to " .$bdate;
 
 		echo "<br><br>";
-		
-		//SQL select statements
-		$sql = "UPDATE employees SET ".$fname." = '".$first_name."' where ".$emp_no." = '".$emp_no."'";
-		$sql = "UPDATE employees SET ".$last_name." = '".$lname."' where ".$emp_no." = '".$emp_no."'";
-		$sql = "UPDATE employees SET ".$hire_date." = '".$hdate."' where ".$emp_no." = '".$emp_no."'";
-		$sql = "UPDATE employees SET ".$birth_date." = '".$bdate."' where ".$emp_no." = '".$emp_no."'";
+
+        	$sql = "SELECT * FROM employees where $emp_no = '".$emp_no."'";
+        	$result = $conn->query($sql);
+        	if ($result->num_rows > 0)
+        	{
+			//print rows
+			while($row = $result->fetch_assoc())
+			{
+			$sql1 = "UPDATE employees SET" .$row["first_name"]. "= '".$fname."' WHERE ".$emp_no." = '".$emp_no."'";
+			$sql2 = "UPDATE employees SET" .$row["last_name"].  "= '".$lname."' WHERE ".$emp_no." = '".$emp_no."'";
+			$sql3 = "UPDATE employees SET" .$row["hire_date"].  "= '".$hdate."' where ".$emp_no." = '".$emp_no."'";
+			$sql4 = "UPDATE employees SET" .$row["birth_date"]. "= '".$bdate."' where ".$emp_no." = '".$emp_no."'";
+			}
+        	}
 
 		//run the update
 		if ($conn->query($sql) === TRUE)
