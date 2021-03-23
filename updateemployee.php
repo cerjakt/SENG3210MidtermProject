@@ -67,9 +67,8 @@
 		<label for="hire_date">Hire Date:</label><br>
 		<input type="text" name="hdate" value="1999-05-30"><br>
 		<label for="emp_no">Employee Number:</label><br>
-		<input type="text" name="enumber" value="500002"><br><br>
+		<input type="text" name="enumber" value="499999"><br>
 		<input type="submit" value="Submit">
 	</form> 
-
 </body>
 </html>
