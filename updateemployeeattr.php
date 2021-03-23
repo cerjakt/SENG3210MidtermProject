@@ -26,44 +26,41 @@
 		}
 		echo "MySQL Connection Succeeded<br><br>";
 		
-		//pull the attribute that was passed with the html form GET request and put into a local variable.
-		$fname = $_GET["first_name"]; // "John"
-        $lname = $_GET["last_name"];  // "Doe"
-        $bdate = $_GET["birth_date"]; // "1969-05-30"
-        $hdate = $_GET["hire_date"];  // "1999-05-30"
-        $enumber = $_GET["emp_no"]; // "500000"
 
-        echo "Updating " . $fname . " to " . $first_name;
-        echo "<br><br>";
-        echo "Updating " . $lname . " to " . $last_name;
-        echo "<br><br>";
-        echo "Updating " . $hdate . " to " . $hire_date;
-        echo "<br><br>";
-        echo "Updating " . $bdate . " to " . $birth_date;
-        echo "<br><br>";
-        echo "Updating " . $enumber . " to " . $emp_no;
+		//pull the attribute that was passed with the html form GET request and put into a local variable.
+		$fname = $_GET["fname"];    // "John"
+		$lname = $_GET["lname"];    // "Doe"
+		$bdate = $_GET["bdate"];    // "1969-05-30"
+		$hdate = $_GET["hdate"];    // "1999-05-30"
+		$emp_no = $_GET["enumber"]; // 499999
+
+		echo "Updating " .$first_name. " to " .$fname;
+		echo "<br>";
+		echo "Updating " .$last_name. " to " .$lname;
+		echo "<br>";
+		echo "Updating " .$hire_date. " to " .$hdate;
+		echo "<br>";
+		echo "Updating " .$birth_date. " to " .$bdate;
 
 		echo "<br><br>";
 		
-		//create the SQL select statement, notice the funky string concat at the end to variablize the query
-		//based on using the GET attribute
-		$sql = "UPDATE employees SET ".$fname." = '".$first_name."'";
-        $sql = "UPDATE employees SET ".$lname." = '".$last_name."'";
-        $sql = "UPDATE employees SET ".$hdate." = '".$hire_date."'";
-        $sql = "UPDATE employees SET ".$bdate." = '".$birth_date."'";
-        $sql = "UPDATE employees SET ".$enumber." = '".$emp_no."'";
+		//SQL select statements
+		$sql = "UPDATE employees SET ".$fname." = '".$first_name."' where ".$emp_no." = '".$emp_no."'";
+		$sql = "UPDATE employees SET ".$last_name." = '".$lname."' where ".$emp_no." = '".$emp_no."'";
+		$sql = "UPDATE employees SET ".$hire_date." = '".$hdate."' where ".$emp_no." = '".$emp_no."'";
+		$sql = "UPDATE employees SET ".$birth_date." = '".$bdate."' where ".$emp_no." = '".$emp_no."'";
 
 		//run the update
-        if ($conn->query($sql) === TRUE)
-        {
-        echo "Update Completed";
-        } 
-        else 
-        {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-        }	
+		if ($conn->query($sql) === TRUE)
+		{
+		echo "Update Completed";
+		} 
+		else 
+		{
+		echo "Error: " . $sql . "<br>" . $conn->error;
+		}	
 		
-		//always close the DB connections, don't leave open 
+		//closing DB connection
 		$conn->close();
 		
 ?>
